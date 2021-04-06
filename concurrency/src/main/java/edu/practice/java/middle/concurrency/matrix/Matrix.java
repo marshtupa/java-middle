@@ -15,22 +15,12 @@ public class Matrix {
 
     private final int weight;
 
-    public int[] getRow(int numberOfRow) {
-        if (numberOfRow > height)
-            throw new IllegalArgumentException("Can't get row with such number " + numberOfRow);
-        return matrix[numberOfRow];
-    }
-
-    public int[] getColumn(int numberOfColumn) {
-        if (numberOfColumn > height)
-            throw new IllegalArgumentException("Can't get column with such number " + numberOfColumn);
-
-        int i = 0;
-        int[] result = new int[height];
-        for (int[] row : matrix) {
-            result[i++] = row[numberOfColumn];
-        }
-        return result;
+    public int getElement(int row, int column) {
+        if (row > height)
+            throw new IllegalArgumentException("Illegal height: " + height);
+        if (column > weight)
+            throw new IllegalArgumentException("Illegal weight: " + height);
+        return matrix[row][column];
     }
 
     public Matrix(int[][] matrix) {

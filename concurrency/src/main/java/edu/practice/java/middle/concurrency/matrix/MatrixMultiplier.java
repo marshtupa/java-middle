@@ -18,25 +18,24 @@ public class MatrixMultiplier {
         writer.writeMatrix(result);
     }
 
-    private Matrix multiplyMatrix(Matrix matrixA, Matrix matrixB) {
+    public Matrix multiplyMatrix(Matrix matrixA, Matrix matrixB) {
         Matrix result = new Matrix(matrixA.getHeight(), matrixB.getWeight());
-        for (int rowCounter = 0; rowCounter < matrixA.getHeight(); rowCounter++) {
-            int[] row = matrixA.getRow(rowCounter);
-            for (int columnCounter = 0; columnCounter < matrixB.getWeight(); columnCounter++) {
-                int[] column = matrixB.getColumn(columnCounter);
-                result.getMatrix()[rowCounter][columnCounter] = dotProduct(row, column);
+        for (int row = 0; row < matrixA.getHeight(); row++) {
+            for (int column = 0; column < matrixB.getWeight(); column++) {
+                dotProduct(matrixA, matrixB, row, column, result);
             }
         }
         return result;
     }
 
-    private int dotProduct(int[] row, int[] column) {
+    public Void dotProduct(Matrix matrixA, Matrix matrixB, int row, int column, Matrix matrix) {
         int result = 0;
 
-        for (int i = 0; i < row.length; i++) {
-            result += row[i] * column[i];
+        for (int i = 0; i < matrixA.getWeight(); i++) {
+            result += matrixA.getElement(row, i) * matrixB.getElement(i, column);
         }
-        return result;
+        matrix.getMatrix()[row][column] = result;
+        return null;
     }
 
     public MatrixMultiplier(MatrixValidator validator, MatrixReader reader, MatrixWriter writer) {
