@@ -1,12 +1,11 @@
-package edu.practice.java.middle.concurrency;
+package edu.practice.java.middle.concurrency.matrix;
 
-import edu.practice.java.middle.concurrency.matrix.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
-import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 
-class ConcurrencyApplicationTests {
+class MatrixTests {
 
 	@Test
 	void testMatricesMultiplication() {
@@ -30,7 +29,7 @@ class ConcurrencyApplicationTests {
 				new MatrixValidator(),
 				new MatrixReader(),
 				new MatrixWriter(),
-				Executors.newFixedThreadPool(6));
+				new ForkJoinPool(5));
 		matrixMultiplier.multiplyMatrix(matrixTestA, matrixTestB);
 		long spentTime = System.currentTimeMillis() - start;
 		System.out.println("Spent time " + spentTime + "ms");
@@ -53,7 +52,7 @@ class ConcurrencyApplicationTests {
 
 	private Matrix createMatrix() {
 		Random random = new Random();
-		Matrix matrix = new Matrix(2000, 2000);
+		Matrix matrix = new Matrix(1000, 1000);
 		int[][] matrixTable = matrix.getMatrix();
 
 		for (int row = 0; row < matrix.getHeight(); row++) {
