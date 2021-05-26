@@ -12,8 +12,9 @@ public class PaymentThread implements Runnable{
 
     @Override
     public void run() {
-        accountFrom.takeOffMoney(money);
-        accountTo.addMoney(money);
+        if (accountFrom.takeOffMoney(money)) {
+            accountTo.addMoney(money);
+        }
     }
 
     public PaymentThread(Account accountFrom, Account accountTo, int money) {

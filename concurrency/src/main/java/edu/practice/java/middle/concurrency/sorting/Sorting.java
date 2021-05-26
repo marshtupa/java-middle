@@ -1,9 +1,9 @@
-package edu.practice.java.middle.concurrency.quicksort;
+package edu.practice.java.middle.concurrency.sorting;
 
 import java.util.Comparator;
 import java.util.List;
 
-public interface QuickSort<T> {
+public interface Sorting<T> {
 
     void sort(List<T> list);
 

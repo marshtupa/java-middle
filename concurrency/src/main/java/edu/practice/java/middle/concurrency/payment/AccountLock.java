@@ -10,24 +10,17 @@ public class AccountLock extends Account {
     @Override
     public void addMoney(int money) {
         lock.lock();
-        try {
-            this.cacheBalance += money;
-        } finally {
-            lock.unlock();
-        }
+        this.cacheBalance += money;
+        lock.unlock();
     }
 
     @Override
-    public void takeOffMoney(int money) {
+    public boolean takeOffMoney(int money) {
+        boolean result;
         lock.lock();
-        try {
-            if (this.cacheBalance < money) {
-                return ;
-            }
-            this.cacheBalance -= money;
-        } finally {
-            lock.unlock();
-        }
+        result = super.takeOffMoney(money);
+        lock.unlock();
+        return result;
     }
 
     public AccountLock(int cacheBalance) {

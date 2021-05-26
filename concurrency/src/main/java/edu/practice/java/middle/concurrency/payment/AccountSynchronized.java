@@ -8,12 +8,8 @@ public class AccountSynchronized extends Account {
     }
 
     @Override
-    public synchronized void takeOffMoney(int money) {
-        if (this.cacheBalance < money) {
-            return ;
-        }
-
-        this.cacheBalance -= money;
+    public synchronized boolean takeOffMoney(int money) {
+        return super.takeOffMoney(money);
     }
 
     public AccountSynchronized(int cacheBalance) {

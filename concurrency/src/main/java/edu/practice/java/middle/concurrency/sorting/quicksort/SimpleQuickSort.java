@@ -1,13 +1,12 @@
-package edu.practice.java.middle.concurrency.quicksort;
+package edu.practice.java.middle.concurrency.sorting.quicksort;
+
+import edu.practice.java.middle.concurrency.sorting.AbstractSorting;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SimpleQuickSort<T> implements QuickSort<T> {
-
-    final int LESS = -1;
-    final int MORE = 1;
+public class SimpleQuickSort<T> extends AbstractSorting<T> implements QuickSort<T> {
 
     @Override
     @SuppressWarnings("unchecked")
@@ -46,12 +45,6 @@ public class SimpleQuickSort<T> implements QuickSort<T> {
             }
         }
         return leftPointer;
-    }
-
-    void swap(List<T> list, int leftPointer, int rightPointer) {
-        T tmp = list.get(leftPointer);
-        list.set(leftPointer, list.get(rightPointer));
-        list.set(rightPointer, tmp);
     }
 
     int getPivot(List<T> list, int low, int high) {

@@ -1,4 +1,4 @@
-package edu.practice.java.middle.concurrency.quicksort;
+package edu.practice.java.middle.concurrency.sorting.quicksort;
 
 import org.junit.jupiter.api.Test;
 

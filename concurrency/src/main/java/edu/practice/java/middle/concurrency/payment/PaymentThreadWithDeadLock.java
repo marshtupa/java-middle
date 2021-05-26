@@ -6,8 +6,9 @@ public class PaymentThreadWithDeadLock extends PaymentThread {
     public void run() {
         synchronized (accountFrom) {
             synchronized (accountTo) {
-                accountFrom.takeOffMoney(money);
-                accountTo.addMoney(money);
+                if (accountFrom.takeOffMoney(money)) {
+                    accountTo.addMoney(money);
+                }
             }
         }
     }

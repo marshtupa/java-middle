@@ -8,12 +8,13 @@ public class Account {
         this.cacheBalance += money;
     }
 
-    public void takeOffMoney(int money) {
+    public boolean takeOffMoney(int money) {
         if (this.cacheBalance < money) {
-            return ;
+            return false;
         }
 
         this.cacheBalance -= money;
+        return true;
     }
 
     public int getCacheBalance() {
